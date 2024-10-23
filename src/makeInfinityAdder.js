@@ -4,7 +4,7 @@
  * @return {function}
  */
 function makeInfinityAdder() {
-  let sum = 0; // Initialize the sum to store the result
+  let sum = 0;
 
   function adder(num) {
     if (num === undefined) {
@@ -14,12 +14,17 @@ function makeInfinityAdder() {
 
       return result;
     }
+
+    if (typeof num !== 'number' || isNaN(num)) {
+      throw new Error('Invalid input: expected a number');
+    }
+
     sum += num;
 
     return adder;
   }
 
-  return adder; // Return the adder function
+  return adder;
 }
 
 module.exports = makeInfinityAdder;
